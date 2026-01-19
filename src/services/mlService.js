@@ -1,7 +1,7 @@
 // ML API Service for Swasthya AI
 // This service connects your React frontend to the Python ML backend
 
-const ML_API_URL = 'http://localhost:5000/api';
+const ML_API_URL = '/api';
 
 /**
  * Check if ML API server is running
