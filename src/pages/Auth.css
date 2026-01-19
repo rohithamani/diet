@@ -1,0 +1,92 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.auth-tabs button {
+    flex: 1;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.auth-tabs button.active {
+    background: white;
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+}
+
+.auth-content {
+    padding: 40px;
+}
+
+.auth-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+}
+
+.auth-content p {
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-warm);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.input-group input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.auth-divider {
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--glass-border);
+}
+
+.google-btn {
+    gap: 12px;
+}
