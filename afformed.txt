@@ -1,0 +1,9 @@
+
+
+
+spring --> dependency injection + types (with practice use telustko ) --> spring boot basic structure and basic common annotations --> rest api 
+
+
+
+
+"Since my primary backend expertise is Java and Spring Boot, I wanted to build an AI application while strengthening my backend skills. The AI capabilities are provided through OpenAI APIs, and Spring Boot is well suited for building secure REST APIs, authentication, database integration, and deployment. This project allowed me to combine enterprise Java development with modern AI technologies."

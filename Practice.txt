@@ -1,0 +1,97 @@
+Tomorrow 9.50am to 5.10pm Practice session Topics
+1. Time, Speed Distance, Tiem 7 Work, Permutation & Combination, probability
+2. Ages, Averages
+3. Blood relation, Seating arrangement, direction sence
+4. Speech, Voice, Error coorection , Jumbled sentence
+
+
+
+Batch 1 coding practice  problem
+996
+980
+847
+864
+1125
+1434
+1494
+1723
+
+
+
+Got it 👍 — you want to prepare for backend interviews/projects (Spring Boot, REST API, Postman, Microservices) by building hands-on experience using the **GitHub repo ammu (20P158)** as a base. Let’s break this into a practical roadmap so you can study and practice effectively:
+
+---
+
+## 🛠 Step-by-Step Backend Prep Plan
+
+### 1. **Spring Boot Fundamentals**
+- Learn how to create a simple Spring Boot project (`spring init` or via Spring Initializr).
+- Understand:
+  - `@RestController`, `@Service`, `@Repository`
+  - Dependency Injection
+  - Application properties (`application.yml` / `.properties`)
+
+👉 Practice: Build a **Hello World REST API** with Spring Boot.
+
+---
+
+### 2. **REST API Development**
+- Learn CRUD operations (`GET`, `POST`, `PUT`, `DELETE`).
+- Use **Postman** to test endpoints.
+- Understand JSON serialization/deserialization with Jackson.
+
+👉 Practice: Create a **Student Management API** (add, update, delete, list students).
+
+---
+
+### 3. **Microservices Concepts**
+- Break monolith into smaller services (e.g., User Service, Order Service).
+- Learn **Spring Cloud** basics:
+  - Service Discovery (Eureka)
+  - API Gateway (Zuul/Spring Cloud Gateway)
+  - Config Server
+
+👉 Practice: Split your project into **User Service** + **Product Service**, communicate via REST.
+
+---
+
+### 4. **Hands-On with GitHub Repo (20P158)**
+Looking at the repo you shared, it has **Gradle wrapper setup** and problem folders. Here’s how you can leverage it:
+- Clone the repo locally.
+- Explore each problem folder — adapt them into **Spring Boot modules**.
+- Add REST endpoints for each functionality.
+- Document APIs with **Swagger/OpenAPI**.
+
+👉 Example: If repo has a problem on array manipulation, expose it as an API:
+```java
+@GetMapping("/reverseArray")
+public int[] reverseArray(@RequestParam int[] arr) {
+    // logic from repo
+}
+```
+
+---
+
+### 5. **Project to Showcase**
+Build a **Mini E-Commerce Backend**:
+- **User Service** → register/login users
+- **Product Service** → CRUD products
+- **Order Service** → place orders
+- Use **Postman** for testing
+- Document with **Swagger**
+- Push to GitHub with README explaining endpoints
+
+---
+
+## 📚 Study Checklist
+- [ ] Spring Boot basics (controllers, services, repositories)
+- [ ] REST API CRUD with Postman testing
+- [ ] Microservices architecture (Eureka, Gateway)
+- [ ] GitHub repo adaptation into Spring Boot APIs
+- [ ] Final project deployment (Heroku/AWS optional)
+
+---
+
+🔥 This way, you’ll have both **theory + hands-on project** ready for interviews.  
+
+Do you want me to **map the repo problems directly into backend APIs** (like a conversion guide), so you can see how each coding problem becomes a REST endpoint?

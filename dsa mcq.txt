@@ -1,0 +1,119 @@
+Q1
+
+Which sorting algorithm repeatedly swaps adjacent elements?
+
+A) Merge Sort
+
+B) Bubble Sort
+
+C) Quick Sort
+
+D) Heap Sort
+
+Q2
+
+Which sorting algorithm works like arranging cards in hand?
+
+A) Heap
+
+B) Merge
+
+C) Insertion
+
+D) Quick
+
+Q3
+
+Worst case complexity of Quick Sort?
+
+A) O(log n)
+
+B) O(n)
+
+C) O(n log n)
+
+D) O(n²)
+
+Q4
+
+Which algorithm always guarantees O(n log n) in worst case?
+
+A) Quick Sort
+
+B) Bubble Sort
+
+C) Merge Sort
+
+D) Insertion Sort
+
+Q5
+
+Which sorting algorithm uses a Pivot?
+
+A) Heap
+
+B) Merge
+
+C) Quick
+
+D) Bubble
+
+Q6
+
+Which sorting algorithm requires extra array memory?
+
+A) Merge Sort
+
+B) Heap Sort
+
+C) Bubble Sort
+
+D) Insertion Sort
+
+Q7
+
+Which sorting algorithm is based on Binary Heap?
+
+A) Bubble
+
+B) Heap
+
+C) Merge
+
+D) Quick
+
+Q8
+
+Best case complexity of Insertion Sort?
+
+A) O(1)
+
+B) O(log n)
+
+C) O(n)
+
+D) O(n²)
+
+Q9
+
+Which sorting algorithm is generally fastest in practical applications?
+
+A) Bubble
+
+B) Insertion
+
+C) Quick
+
+D) Selection
+
+Q10
+
+Which sorting algorithm has O(1) extra space and O(n log n) worst-case complexity?
+
+A) Merge
+
+B) Heap
+
+C) Bubble
+
+D) Quick
