@@ -17,6 +17,17 @@ const STEPS = [
     { id: 'generating', question: 'Processing your details... Generating your personalized Indian diet plan.', type: 'status' }
 ];
 
+const getDietPreference = (dietType = '') => {
+    const normalized = String(dietType || '').toLowerCase().trim();
+
+    if (['veg', 'vegetarian'].includes(normalized)) return 'vegetarian';
+    if (['non-veg', 'non-vegetarian', 'nonveg', 'non vegetarian'].includes(normalized)) return 'non-vegetarian';
+    if (['eggetarian', 'egg', 'eggitarian'].includes(normalized)) return 'eggetarian';
+    if (['vegan'].includes(normalized)) return 'vegan';
+
+    return 'vegetarian';
+};
+
 const ChatAgent = () => {
     const { user, addSavedPlan } = useUser();
     const [messages, setMessages] = useState([]);
@@ -109,19 +120,47 @@ const ChatAgent = () => {
     const generateDietPlan = async (data) => {
         setIsGenerating(true);
 
-        // Define potential meals based on user preference
-        const isSouthIndian = data.cuisine.toLowerCase().includes('south') || data.cuisine.toLowerCase().includes('tamil');
-        const isVeg = data.diet_type === 'Veg';
+        const cuisine = data.cuisine || 'Indian';
+        const isSouthIndian = cuisine.toLowerCase().includes('south') || cuisine.toLowerCase().includes('tamil');
+        const dietType = getDietPreference(data.diet_type);
+
+        const dietMeals = {
+            vegetarian: {
+                breakfast: isSouthIndian ? 'Idli with Sambar and coconut chutney' : 'Masala oats with banana and nuts',
+                lunch: isSouthIndian ? 'Brown rice with paneer curry and salad' : 'Wheat roti with dal and paneer',
+                snack: 'Roasted makhana or a handful of almonds',
+                dinner: 'Moong dal khichdi with curd'
+            },
+            'non-vegetarian': {
+                breakfast: isSouthIndian ? 'Egg dosa with chutney' : 'Egg bhurji with whole wheat toast',
+                lunch: isSouthIndian ? 'Chicken curry with brown rice and salad' : 'Grilled chicken with quinoa and vegetables',
+                snack: 'Greek yogurt or chicken salad wrap',
+                dinner: 'Fish/Chicken stir-fry with mixed vegetables'
+            },
+            eggetarian: {
+                breakfast: isSouthIndian ? 'Vegetable omelette with millet dosa' : 'Scrambled eggs with whole grain toast',
+                lunch: isSouthIndian ? 'Brown rice with egg curry and salad' : 'Egg pulao with dal',
+                snack: 'Boiled eggs and fresh fruit',
+                dinner: 'Khichdi with scrambled eggs and greens'
+            },
+            vegan: {
+                breakfast: isSouthIndian ? 'Ragi dosa with coconut chutney' : 'Overnight oats with chia and berries',
+                lunch: isSouthIndian ? 'Brown rice with tofu curry and sambar' : 'Quinoa bowl with tofu and roasted vegetables',
+                snack: 'Roasted chickpeas or trail mix',
+                dinner: 'Vegan dal khichdi with sautéed greens'
+            }
+        };
+
+        const selectedMeals = dietMeals[dietType] || dietMeals.vegetarian;
 
         const suggestedFoods = [
-            { name: isSouthIndian ? 'Idli with Sambar' : 'Wheat Roti with Dal', calories: 250, protein: 12, carbs: 45, fat: 5, fiber: 6 },
-            { name: isVeg ? 'Brown Rice with Paneer' : 'Brown Rice with Chicken', calories: 450, protein: 25, carbs: 55, fat: 12, fiber: 8 },
-            { name: 'Sprouts Salad', calories: 120, protein: 15, carbs: 20, fat: 2, fiber: 10 },
-            { name: 'Moong Dal Khichdi', calories: 300, protein: 18, carbs: 40, fat: 6, fiber: 7 }
+            { name: selectedMeals.breakfast, calories: 250, protein: 12, carbs: 45, fat: 5, fiber: 6 },
+            { name: selectedMeals.lunch, calories: 450, protein: 25, carbs: 55, fat: 12, fiber: 8 },
+            { name: selectedMeals.snack, calories: 120, protein: 15, carbs: 20, fat: 2, fiber: 10 },
+            { name: selectedMeals.dinner, calories: 300, protein: 18, carbs: 40, fat: 6, fiber: 7 }
         ];
 
         try {
-            // Call the real ML API!
             let analysis = { meal_score: 85, meal_rating: 'Excellent', meal_emoji: '🌟' };
 
             if (apiStatus === 'online') {
@@ -132,11 +171,11 @@ const ChatAgent = () => {
             }
 
             const plan = {
-                title: `${data.cuisine} Style ${data.goal} Plan`,
-                breakfast: suggestedFoods[0].name,
-                lunch: suggestedFoods[1].name + ' with Sprouts Salad',
-                snack: 'Roasted Makhana or Handful of Almonds',
-                dinner: suggestedFoods[3].name + ' (Light)',
+                title: `${cuisine} Style ${data.goal} Plan`,
+                breakfast: selectedMeals.breakfast,
+                lunch: selectedMeals.lunch + ' with sprouts salad',
+                snack: selectedMeals.snack,
+                dinner: selectedMeals.dinner,
                 score: analysis.meal_score,
                 rating: analysis.meal_rating,
                 emoji: analysis.meal_emoji,
@@ -151,14 +190,13 @@ const ChatAgent = () => {
             }, 1500);
 
         } catch (error) {
-            console.error("ML Analysis failed, falling back to heuristic:", error);
-            // Fallback
+            console.error('ML Analysis failed, falling back to heuristic:', error);
             const plan = {
-                title: `${data.cuisine} Style ${data.goal} Plan`,
-                breakfast: isSouthIndian ? 'Idli Sambar' : 'Paratha/Poha',
-                lunch: 'Rice, Dal, Veggie',
-                snack: 'Fruits/Nuts',
-                dinner: 'Khichdi/Soup',
+                title: `${cuisine} Style ${data.goal} Plan`,
+                breakfast: selectedMeals.breakfast,
+                lunch: selectedMeals.lunch,
+                snack: selectedMeals.snack,
+                dinner: selectedMeals.dinner,
                 score: 75,
                 rating: 'Good',
                 emoji: '👍',
@@ -166,7 +204,7 @@ const ChatAgent = () => {
             };
             setDietPlan(plan);
             setIsGenerating(false);
-            addBotMessage("Your plan is ready! Check details below.");
+            addBotMessage('Your plan is ready! Check details below.');
         }
     };
 
